@@ -14,8 +14,8 @@ RUN		openssl req -x509																	\
 		-newkey rsa:4096																	\
 		-subj "/CN=tda-silv.42.fr/O=ECOLE 42/ST=PARIS/L=PARIS/ST=PARIS/C=FR/OU=INCEPTION"	\
 		-addext "subjectAltName=DNS:tda-silv.42.fr"											\
-		-keyout /etc/ssl/nginx-selfsigned.key												\
-		-out /etc/ssl/nginx-selfsigned.crt
+		-keyout /etc/ssl/tda-silv.42.fr.key												\
+		-out /etc/ssl/tda-silv.42.fr.crt
 
 #		req -x509			to specify we want to create a self-signed certificate instead of generating a certificate signing request
 #		-nodes				makes it so that we skip the option to secure our certificate with a passphrase, so that nginx can read it
