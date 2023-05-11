@@ -1,20 +1,20 @@
 
 FROM	debian:buster
 
-RUN		apt-get update																		\
-			&& apt-get install -y nginx														\
+RUN		apt-get update																\
+			&& apt-get install -y nginx												\
 			&& apt-get install -y openssl
 
 COPY	./conf/.conf /etc/nginx/conf.d
 COPY	./tools/index.html /var/www/html
 
-RUN		openssl req -x509																	\
-		-nodes																				\
-		-days 365																			\
-		-newkey rsa:4096																	\
-		-subj "/CN=tda-silv.42.fr/O=ECOLE 42/ST=PARIS/L=PARIS/ST=PARIS/C=FR/OU=INCEPTION"	\
-		-addext "subjectAltName=DNS:tda-silv.42.fr"											\
-		-keyout /etc/ssl/tda-silv.42.fr.key												\
+RUN		openssl req -x509															\
+		-nodes																		\
+		-days 365																	\
+		-newkey rsa:4096															\
+		-subj "/CN=tda-silv.42.fr/O=ECOLE 42/ST=PARIS/L=PARIS/C=FR/OU=INCEPTION"	\
+		-addext "subjectAltName=DNS:tda-silv.42.fr"									\
+		-keyout /etc/ssl/tda-silv.42.fr.key											\
 		-out /etc/ssl/tda-silv.42.fr.crt
 
 #		req -x509			to specify we want to create a self-signed certificate instead of generating a certificate signing request
@@ -27,6 +27,5 @@ RUN		openssl req -x509																	\
 #		-out /...			specifies the location of the output .crt file
 
 EXPOSE	443
-EXPOSE	80
 
 CMD		["nginx", "-g", "daemon off;"]
