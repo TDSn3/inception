@@ -5,10 +5,10 @@ services:
     container_name: nginx
     build: ./requirements/nginx
     ports:
-      - "443:443"
+     - "443:443"
     restart: always
     networks:
-      - network
+     - network
 
 networks:
   network:
