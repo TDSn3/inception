@@ -2,8 +2,9 @@
 FROM	debian:buster
 
 RUN		apt-get update																\
-			&& apt-get install -y nginx												\
-			&& apt-get install -y openssl
+			&& apt-get install -y													\
+				nginx																\
+				openssl
 
 COPY	./conf/nginx.conf /etc/nginx/conf.d
 COPY	./tools/index.html /var/www/html
