@@ -4,18 +4,37 @@ services:
   nginx:
     container_name: nginx
     build: ./requirements/nginx
+    volumes:
+     - wordpress:/var/www/html
+    depends_on:
+     - wordpress
     ports:
      - "443:443"
-    restart: always
+     - "80:80"
     networks:
      - network
+    restart: always
 
   wordpress:
     container_name: wordpress
     build: ./requirements/wordpress
-    restart: always
+    volumes:
+     - wordpress:/var/www/html
+    env_file:
+      - .env
+    ports:
+     - "9000:9000"
     networks:
      - network
+    restart: always
+
+volumes:
+ wordpress:
+  name: wordpress
+  driver_opts:
+   device: /Users/thomas/Desktop/42/data
+   o: bind
+   type: none
 
 networks:
   network:

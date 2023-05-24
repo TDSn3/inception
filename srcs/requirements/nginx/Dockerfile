@@ -7,8 +7,9 @@ RUN		apt-get update																\
 				openssl
 
 COPY	./conf/nginx.conf /etc/nginx/conf.d
-COPY	./tools/index.html /var/www/html
-COPY	./tools/card.css /var/www/html
+# COPY	./tools/index.html /var/www/html
+# COPY	./tools/card.css /var/www/html
+COPY	./tools/index.php /var/www/html
 
 RUN		openssl req -x509															\
 		-nodes																		\
@@ -29,5 +30,6 @@ RUN		openssl req -x509															\
 #		-out /...			specifies the location of the output .crt file
 
 EXPOSE	443
+EXPOSE	80
 
 CMD		["nginx", "-g", "daemon off;"]
