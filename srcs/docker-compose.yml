@@ -10,6 +10,13 @@ services:
     networks:
      - network
 
+  wordpress:
+    container_name: wordpress
+    build: ./requirements/wordpress
+    restart: always
+    networks:
+     - network
+
 networks:
   network:
     driver: bridge
