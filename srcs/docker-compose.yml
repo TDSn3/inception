@@ -1,41 +1,58 @@
 version: '3'
 
 services:
-  nginx:
-    container_name: nginx
-    build: ./requirements/nginx
-    volumes:
-     - wordpress:/var/www/html
-    depends_on:
-     - wordpress
-    ports:
-     - "443:443"
-     - "80:80"
-    networks:
-     - network
-    restart: always
+    mariadb:
+        container_name: mariadb
+        build: ./requirements/mariadb
+#        volumes:
+#            - mariadb:/var/lib/mysql
+        env_file:
+            - .env
+        networks:
+            - network
+        restart: always
 
-  wordpress:
-    container_name: wordpress
-    build: ./requirements/wordpress
-    volumes:
-     - wordpress:/var/www/html
-    env_file:
-      - .env
-    ports:
-     - "9000:9000"
-    networks:
-     - network
-    restart: always
+    wordpress:
+        container_name: wordpress
+        depends_on:
+            - mariadb
+        build: ./requirements/wordpress
+        volumes:
+            - wordpress:/var/www/html
+        env_file:
+            - .env
+        networks:
+            - network
+        restart: always
+
+    nginx:
+        container_name: nginx
+        depends_on:
+            - wordpress
+        build: ./requirements/nginx
+        volumes:
+            - wordpress:/var/www/html
+        ports:
+            - "443:443"
+        networks:
+            - network
+        restart: always
 
 volumes:
- wordpress:
-  name: wordpress
-  driver_opts:
-   device: /Users/thomas/Desktop/42/data
-   o: bind
-   type: none
+    mariadb:
+        name: mariadb
+        driver_opts:
+            device: /Users/thomas/Desktop/42/data/mariadb
+            o: bind
+            type: none
+
+    wordpress:
+        name: wordpress
+        driver_opts:
+            device: /Users/thomas/Desktop/42/data/wordpress
+            o: bind
+            type: none
 
 networks:
-  network:
-    driver: bridge
+    network:
+        driver: bridge

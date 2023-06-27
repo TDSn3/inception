@@ -30,6 +30,5 @@ RUN		openssl req -x509															\
 #		-out /...			specifies the location of the output .crt file
 
 EXPOSE	443
-EXPOSE	80
 
 CMD		["nginx", "-g", "daemon off;"]
