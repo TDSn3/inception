@@ -7,12 +7,14 @@ echo "Database already exists"
 mysql_secure_installation << STOP
 
 Y
-123
-123
+root
+root
 Y
-N
+n
 Y
 Y
 STOP
+
+service mysql stop
 
 exec "$@"
