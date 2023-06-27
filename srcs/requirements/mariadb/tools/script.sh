@@ -1,9 +1,8 @@
 #! /bin/bash
 
+#if [ ! -f "/var/lib/mysql/.installation_ok" ]; then
+
 service mysql start
-
-echo "Database already exists"
-
 mysql_secure_installation << STOP
 
 Y
@@ -14,7 +13,9 @@ n
 Y
 Y
 STOP
-
 service mysql stop
+touch .installation_ok
+
+#fi
 
 exec "$@"

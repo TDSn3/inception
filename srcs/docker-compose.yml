@@ -4,13 +4,13 @@ services:
     mariadb:
         container_name: mariadb
         build: ./requirements/mariadb
-#        volumes:
-#            - mariadb:/var/lib/mysql
-#        env_file:
-#            - .env
+        volumes:
+            - mariadb:/var/lib/mysql
+        env_file:
+            - .env
         networks:
             - network
-        restart: no
+        restart: always
 
     wordpress:
         container_name: wordpress
