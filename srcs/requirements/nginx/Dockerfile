@@ -9,7 +9,7 @@ RUN		apt-get update																\
 COPY	./conf/nginx.conf /etc/nginx/conf.d
 # COPY	./tools/index.html /var/www/html
 # COPY	./tools/card.css /var/www/html
-COPY	./tools/index.php /var/www/html
+# COPY	./tools/index.php /var/www/html
 
 RUN		openssl req -x509															\
 		-nodes																		\

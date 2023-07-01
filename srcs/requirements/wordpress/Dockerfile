@@ -19,6 +19,7 @@ WORKDIR	/var/www/html
 RUN		wget http://wordpress.org/latest.tar.gz											\
 			&& tar -xzvf latest.tar.gz													\
 			&& rm -rf latest.tar.gz
+
 WORKDIR	/
 
 EXPOSE	9000
