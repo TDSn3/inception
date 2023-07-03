@@ -15,10 +15,10 @@ Y
 Y
 EOF
 
-mysql -u root -e "GRANT ALL ON *.* TO 'root'@'%' IDENTIFIED BY '$MYSQL_ROOT_PWD';
-                  CREATE DATABASE IF NOT EXISTS $MYSQL_DATABASE;
+mysql -u root -e "CREATE DATABASE IF NOT EXISTS $MYSQL_DATABASE;
                   CREATE USER '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PWD';
                   GRANT ALL ON $MYSQL_DATABASE.* TO '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PWD';
+				  GRANT ALL ON *.* TO 'root'@'%' IDENTIFIED BY '$MYSQL_ROOT_PWD';
                   FLUSH PRIVILEGES;"
 
 sed -i 's/#port.*/port                    = 3306/' /etc/mysql/mariadb.conf.d/50-server.cnf
