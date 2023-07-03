@@ -2,7 +2,8 @@
 
 if [ ! -f "/var/www/html/wp-config.php" ]; then
 
-mkdir -p /var/www/html
+mkdir /var/www
+mkdir /var/www/html
 cd /var/www/html
 
 wget http://wordpress.org/latest.tar.gz
