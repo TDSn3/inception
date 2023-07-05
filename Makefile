@@ -67,5 +67,19 @@ kill_mariadb:
 	@docker kill $$(docker ps --filter name=mariadb --format "{{.ID}}")
 
 #-----------------------#
+# Wordpress             #
+#-----------------------#
+
+it_wordpress:
+	@docker exec -it $$(docker ps --filter name=wordpress --format "{{.ID}}") bash
+
+#-----------------------#
+# Nginx                 #
+#-----------------------#
+
+it_nginx:
+	@docker exec -it $$(docker ps --filter name=nginx --format "{{.ID}}") bash
+
+#-----------------------#
 
 .PHONY: all ps start stop down clean setup mariadb it_mariadb kill_mariadb
