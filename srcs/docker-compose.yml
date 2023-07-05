@@ -9,7 +9,7 @@ services:
         env_file:
             - .env
         networks:
-            - network
+            - inception_network
         restart: always
 
     wordpress:
@@ -22,7 +22,7 @@ services:
         env_file:
             - .env
         networks:
-            - network
+            - inception_network
         restart: always
 
     nginx:
@@ -35,7 +35,7 @@ services:
         ports:
             - "443:443"
         networks:
-            - network
+            - inception_network
         restart: always
 
 volumes:
@@ -52,5 +52,5 @@ volumes:
             type: none
 
 networks:
-    network:
+    inception_network:
         driver: bridge
