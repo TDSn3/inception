@@ -1,7 +1,5 @@
 #! /bin/bash
 
-sleep 5
-
 if [ ! -f "/var/www/html/wp-config.php" ]; then
 
 mkdir /var/www
@@ -25,6 +23,6 @@ rm -rf ../wordpress
 
 fi
 
-sed -i 's/listen = .*/listen = 9000/' /etc/php/7.3/fpm/pool.d/www.conf
+sed -i "s/listen = .*/listen = 9000/" /etc/php/7.3/fpm/pool.d/www.conf
 
 exec "$@"

@@ -17,7 +17,6 @@ RUN		openssl req -x509															\
 		-keyout /etc/ssl/private/tda-silv.42.fr.key									\
 		-out /etc/ssl/certs/tda-silv.42.fr.crt
 
-EXPOSE	80
 EXPOSE	443
 
 CMD		["nginx", "-g", "daemon off;"]

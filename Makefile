@@ -1,6 +1,6 @@
 
 all:
-	@cd srcs; docker-compose up -d --build
+	@docker-compose -f ./srcs/docker-compose.yml up -d --build
 
 ps:
 	docker image ls
@@ -9,15 +9,24 @@ ps:
 	@echo ""
 	docker volume ls	
 
+start : 
+	@docker-compose -f ./srcs/docker-compose.yml start
+
+stop : 
+	@docker-compose -f ./srcs/docker-compose.yml stop
+
+down : 
+	@docker-compose -f ./srcs/docker-compose.yml down
+
 clean:
-	@cd srcs; docker-compose kill
+	@docker-compose -f ./srcs/docker-compose.yml kill
 	@echo ""
 	@docker system prune -a -f
 	@if [ $$(docker volume ls -q | wc -l) -gt 0 ]; then	\
 		docker volume rm $$(docker volume ls -q);		\
 	fi
-	rm -rf /Users/thomas/Desktop/42/data/mariadb/*
-	rm -rf /Users/thomas/Desktop/42/data/wordpress/*
+	@rm -rf /Users/thomas/Desktop/42/data/mariadb/*
+	@rm -rf /Users/thomas/Desktop/42/data/wordpress/*
 
 #-----------------------#
 # Manual                #
@@ -58,3 +67,5 @@ kill_mariadb:
 	@docker kill $$(docker ps --filter name=mariadb --format "{{.ID}}")
 
 #-----------------------#
+
+.PHONY: all ps start stop down clean setup mariadb it_mariadb kill_mariadb
