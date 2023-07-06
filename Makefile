@@ -28,6 +28,8 @@ clean:
 	@rm -rf /Users/thomas/Desktop/42/data/mariadb/*
 	@rm -rf /Users/thomas/Desktop/42/data/wordpress/*
 
+re: clean all
+
 #-----------------------#
 # Manual                #
 #-----------------------#
@@ -36,12 +38,12 @@ setup:
 	@docker network create inception_network
 	@docker volume create --driver local					\
 		--opt type=none										\
-		--opt device=/Users/thomas/Desktop/42/data/mariadb	\
+		--opt device=/Users/thomas/Desktop/d	\
 		--opt o=bind										\
 		mariadb
 	@docker volume create --driver local						\
 		--opt type=none											\
-		--opt device=/Users/thomas/Desktop/42/data/wordpress	\
+		--opt device=/Users/thomas/Desktop/w	\
 		--opt o=bind											\
 		wordpress
 
@@ -82,4 +84,4 @@ it_nginx:
 
 #-----------------------#
 
-.PHONY: all ps start stop down clean setup mariadb it_mariadb kill_mariadb
+.PHONY: all ps start stop down clean re setup mariadb it_mariadb kill_mariadb

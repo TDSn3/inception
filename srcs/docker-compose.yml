@@ -41,13 +41,13 @@ services:
 volumes:
     mariadb:
         driver_opts:
-            device: /Users/thomas/Desktop/42/data/mariadb
+            device: /Users/thomas/Desktop/d
             o: bind
             type: none
 
     wordpress:
         driver_opts:
-            device: /Users/thomas/Desktop/42/data/wordpress
+            device: /Users/thomas/Desktop/w
             o: bind
             type: none
 
