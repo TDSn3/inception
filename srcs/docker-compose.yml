@@ -1,6 +1,17 @@
 version: '3'
 
 services:
+    nginx:
+        container_name: nginx
+        build: ./requirements/nginx
+        volumes:
+            - wordpress:/var/www/html
+        ports:
+            - "443:443"
+        networks:
+            - inception_network
+        restart: always
+
     mariadb:
         container_name: mariadb
         build: ./requirements/mariadb
@@ -25,29 +36,16 @@ services:
             - inception_network
         restart: always
 
-    nginx:
-        container_name: nginx
-        depends_on:
-            - wordpress
-        build: ./requirements/nginx
-        volumes:
-            - wordpress:/var/www/html
-        ports:
-            - "443:443"
-        networks:
-            - inception_network
-        restart: always
-
 volumes:
     mariadb:
         driver_opts:
-            device: /Users/thomas/Desktop/d
+            device: /home/tda-silv/data/mariadb
             o: bind
             type: none
 
     wordpress:
         driver_opts:
-            device: /Users/thomas/Desktop/w
+            device: /home/tda-silv/data/wordpress
             o: bind
             type: none
 

@@ -25,8 +25,8 @@ clean:
 	@if [ $$(docker volume ls -q | wc -l) -gt 0 ]; then	\
 		docker volume rm $$(docker volume ls -q);		\
 	fi
-	@rm -rf /Users/thomas/Desktop/42/data/mariadb/*
-	@rm -rf /Users/thomas/Desktop/42/data/wordpress/*
+	@rm -rf /home/tda-silv/data/mariadb/*
+	@rm -rf /home/tda-silv/data/wordpress/*
 
 re: clean all
 
@@ -36,15 +36,15 @@ re: clean all
 
 setup:
 	@docker network create inception_network
-	@docker volume create --driver local					\
-		--opt type=none										\
-		--opt device=/Users/thomas/Desktop/d	\
-		--opt o=bind										\
+	@docker volume create --driver local			\
+		--opt type=none								\
+		--opt device=/home/tda-silv/data/mariadb	\
+		--opt o=bind								\
 		mariadb
-	@docker volume create --driver local						\
-		--opt type=none											\
-		--opt device=/Users/thomas/Desktop/w	\
-		--opt o=bind											\
+	@docker volume create --driver local			\
+		--opt type=none								\
+		--opt device=/home/tda-silv/data/wordpress	\
+		--opt o=bind								\
 		wordpress
 
 #-----------------------#

@@ -11,11 +11,6 @@ RUN		apt-get update																			\
 				php${PHP_VERSION}-mysql															\
 			&& mkdir -p /var/run/php															\
 			&& mkdir -p /var/www/html															\
-			&& wget http://wordpress.org/latest.tar.gz											\
-			&& tar -xzvf latest.tar.gz															\
-			&& rm -rf latest.tar.gz																\
-			&& mv wordpress/* /var/www/html														\
-			&& rm -rf wordpress																	\
 			&& wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar	\
 			&& chmod +x wp-cli.phar																\
 			&& mv wp-cli.phar /usr/local/bin/wp
